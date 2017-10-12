@@ -57,7 +57,7 @@ Route::resource('employees', 'employeesController');
 Route::get('employees/salary/{id}', 'employeesController@salary');
 Route::get('employees/vacation/{id}', 'employeesController@vacation');
 Route::get('employees/leave/{id}', 'employeesController@leave');
-//Route::get('employees/tax/{id}', 'employeesController@tax');
+Route::get('employees/tax/{id}', 'employeesController@tax');
 Route::get('employees/benefits/{id}', 'employeesController@benefits');
 Route::get('employees/files/{id}', 'employeesController@files');
 Route::get('employees/deposits/{id}', 'employeesController@deposits');

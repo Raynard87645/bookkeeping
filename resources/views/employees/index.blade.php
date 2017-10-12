@@ -2,7 +2,8 @@
 
 
 @section('content')
-   <div class="row">
+
+ <div class="row">
       <div class="col-md-10 col-md-offset-1" >
           <div class="col-md-0 noformpacing" >
               <h1>Employees</h1>
@@ -44,9 +45,9 @@
             </thead>
               
             @endforeach
+           @else 
             
-
-
+            <h3> You don't have any employee added. Use button to add employees</h3> 
           </table>
           @endif
 

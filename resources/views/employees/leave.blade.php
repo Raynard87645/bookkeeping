@@ -65,20 +65,20 @@
                             	Since your jurisdiction doesn't have minimum requirements for sick leave, we've put together a basic policy. Once you opt in, you'll be able to adjust it.
                             	</p>
 
-								<p>Please review how sick time will be handled in payroll:</p>
+              								<p>Please review how sick time will be handled in payroll:</p>
 
-								<ul>
-									<li>
-										Only available hours will be paid.
-									</li>
-									<li>
-										Remaining hours will not be paid.
-									</li>
-								</ul>
-								<p>
-								The updated policy will be {{ $employee->created_at->toFormattedDateString() }}
-                               </p>
-                           
+              								<ul>
+              									<li>
+              										Only available hours will be paid.
+              									</li>
+              									<li>
+              										Remaining hours will not be paid.
+              									</li>
+              								</ul>
+              								<p>
+              								The updated policy will be {{ $employee->created_at->toFormattedDateString() }}
+                                             </p>
+                                         
 		                   <div class="modal-footer">
 		                       <button class="btn btn-danger" type="submit">Continue Offbording</button>
 		                       <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>

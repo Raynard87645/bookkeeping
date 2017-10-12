@@ -53,4 +53,26 @@ $factory->define(App\Sales::class, function (Faker\Generator $faker) {
        // 'sale_date' => Carbon\Carbon::parse('1 week'),
     ];
 });
+/*$factory->define(App\Employee::class, function (Faker\Generator $faker) {
+    static $password;
+    
+    return [
+           'first_name' => $faker->word,
+           'last_name' => $faker->word,
+           'address_street' =>$faker->word, 
+           'address_town' => $faker->word,
+           'address_parish' =>$faker->word, 
+           'address_country' =>$request->address_country,
+           'dob' => $dateOfBirth->toDateString(),
+           'email' => $request->email,
+           'ssn' => (isset($request->snn)) ? $request->snn : $snn,
+           'hire_date' => $request->hire_date,
+           'work_location' =>$request->work_location, 
+           'wages' => $request->wages,
+           'wages_amount' => (isset($request->wages_amount)) ? $request->wages_amount : $wages_amount,
+           'vacation' => $request->vacation,
+           'currency' => $request->currency,
+           'effective_date' => (isset($request->effective_date)) ? $request->effective_date : Carbon::now(),
+    ];
+});*/
 

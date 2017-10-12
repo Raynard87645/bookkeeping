@@ -212,9 +212,9 @@
                           <div class="col-md-12 noformpacing">
                           <label >Work Wages <span style="color: red"> * </span></label>
 				   	  		 <select class="form-control" name="wages" form="selectMenu" value="{{ $employees->wages }}">
-							    <option>Per hour</option>
-							    <option>Weekly</option>
-							    <option>Monthly</option>
+							    <option>Hour</option>
+							    <option>Week</option>
+							    <option>Month</option>
 							    <option>Anually</option>
 							 </select><br>
 				   	  	  </div>
@@ -231,6 +231,7 @@
                   </div>
                  </div>
                </div>
+                
 		   	  		<button type="submit" class="btn btn-success pull-right">Save and Continue</button><br>
    	  	   </form><br>
 

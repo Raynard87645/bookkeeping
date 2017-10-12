@@ -29,6 +29,11 @@ class CreateEmployeesTable extends Migration
             $table->string('wages');
             $table->integer('wages_amount');
             $table->string('vacation');
+            $table->date('effective_date');
+            $table->integer('vacation_balance');
+            $table->string('vacation_type');
+            $table->string('vacation_rate');
+            $table->date('vacation_date');
             //$table->date('sale_date')->nullable();
              $table->timestamps();
 

@@ -5,8 +5,6 @@
 
   <div class="row">
     <div class="col-md-10 col-md-offset-1" style="margin-top: 10px">
-       @foreach($employees as $employee)
-          @if($employee->id == $click->id)
             <h1><b>{{ $employee->first_name }} {{ $employee->last_name }}</b></h1>
     </div>
     <div class="col-md-10 col-md-offset-1">
@@ -40,9 +38,6 @@
           </table>
         </div>
     </div>
-      @else
-      @endif
-    @endforeach
   <div class="col-md-10 col-md-offset-1" >
     <div class="panel panel-primary" >
 
@@ -56,10 +51,47 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
         <div class="col-md-4 pull-left">
-          <h1>$34/Hour</h1>
+          <h1>${{ $employee->wages_amount }}/{{ $employee->wages }}</h1>
         </div>
         <div class="col-md-8 " style="margin-top: 25px">
-          <button class="btn btn-default col-md-4 pull-right">Change Salary</button>
+          <button type="button" class="btn btn-default col-md-4 pull-right" data-toggle="modal" data-target="#salaryPop">Change Salary</button>
+           <div class="modal fade" id="salaryPop" role="dialog">
+                 <div class="modal-dialog">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                        <h4 class="modal-title"><b>Change Salary</b></h4>
+                     </div>
+                     <div class="modal-body">
+                    <form id="thselectMenu" action="../{{ $employee->id }}" method="post" enctype="multipart/form-data">
+                          {{ method_field('PUT') }}
+                           {{csrf_field()}}
+                      <div class="col-md-12 noformpacing {{ $errors->has('wages_amount') ? 'has-error' : '' }}">
+                              <label >Wages Amount <span style="color: red"> * </span></label>
+                         <input type="field" name="wages_amount" class="form-control" value="{{ $employee->wages_amount }}" />
+                      </div>
+                      <div class="col-md-12 noformpacing {{ $errors->has('wages') ? 'has-error' : '' }}">
+                        <label >Work Wages <span style="color: red"> * </span></label>
+                          <select class="form-control" name="wages" form="thselectMenu" value="{{ $employee->wages }}">
+                            <option>Hour</option>
+                            <option>Week</option>
+                            <option>Month</option>
+                            <option>Anual</option>
+                          </select><br>
+                      </div>
+                      <div class="col-md-12 noformpacing {{ $errors->has('ssn') ? 'has-error' : '' }}">
+                             <label >Effective Date<span style="color: red"> * </span></label>
+                              <input type="date" name="effective_date" class="form-control" value="{{ $employee->effective_date }}" /><br>
+                      </div>                  
+                       <div class="modal-footer">
+                           <button class="btn btn-danger" type="submit">Change Salary</button>
+                           <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                       </div>
+                        </form>
+                      </div>
+                   </div>  
+                 </div>
+           </div>
         </div>
       </div>
     </div>
@@ -72,25 +104,21 @@
       <div class="panel panel-default" > 
         
        
-          @if(count($employees))
+          @if(count($employee))
         <table class="table table-striped table-hover">
             <thead>
               <tr style="background-color: #84b1f9">
-                <td><b>Salary History</b></td>
+                <td><b>Amount</b></td>
                 <td align="right"><b>Effective Date</b></td>
               </tr>
             </thead>
-          @foreach($employees as $employee)
-            @if($employee->id == $click->id)
               <thead>
                 <tr>
-                  <td><b><a href="employees/{{ $employee->id }}/edit">{{ $employee->first_name }} {{ $employee->last_name }}</a></b></td>
-                  <td align="right"> {{ $employee->created_at->toFormattedDateString() }}</td>
+                  <td><b>${{ $employee->wages_amount }}/{{ $employee->wages }}</b></td>
+                  <td align="right"> {{ $employee->effective_date }}</td>
                 </tr>
               </thead>
-            @else
-            @endif
-          @endforeach
+          
         </table>
           @endif
       </div> 

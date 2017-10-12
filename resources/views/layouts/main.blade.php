@@ -402,12 +402,29 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/addpayroll"><i class="fa fa-circle-o"></i> Add Payroll</a></li>
+            <li><a href="/payrollsetup"><i class="fa fa-circle-o"></i> Setup Payroll</a></li>
             <li><a href="/employees"><i class="fa fa-circle-o"></i> Employees</a></li>
             <li><a href="/timesheets"><i class="fa fa-circle-o"></i> Timesheets</a></li>
             <li><a href="/taxes"><i class="fa fa-circle-o"></i> Taxes</a></li>
             <li><a href="/taxform"><i class="fa fa-circle-o"></i> Tax form</a></li>
             <li><a href="/deposits"><i class="fa fa-circle-o"></i> Deposits</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i>
+            <span>Sales</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/estimates"><i class="fa fa-circle-o"></i> Estimates</a></li>
+            <li><a href="/invoices"><i class="fa fa-circle-o"></i> Invoices</a></li>
+            <li><a href="/recurrinvoices"><i class="fa fa-circle-o"></i> Recurring Invoices</a></li>
+            <li><a href="/customerstatements"><i class="fa fa-circle-o"></i> Customer Statements</a></li>
+            <li><a href="/customers"><i class="fa fa-circle-o"></i> Customers</a></li>
+            <li><a href="/productsandservices"><i class="fa fa-circle-o"></i> Products & services</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -525,13 +542,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+  
 
  
   <!-- /.control-sidebar -->

@@ -47,9 +47,12 @@ class employeesController extends Controller
         
          if($request->snn == '*** ** ***' || $request->snn == null) 
             $snn = 10000001;
+         else
+             $request->snn;
          if($request->wages_amount == 'Wages' || $request->wages_amount == null) 
             $wages_amount = 0;
-       
+          else
+            $request->wages_amount;
           $validator = Validator::make($request->all(), [
             
             'first_name' => 'required|max:32|string',
@@ -61,7 +64,7 @@ class employeesController extends Controller
             'year' => 'required',
             'month' => 'required',
             'day' => 'required',
-            //'email' => 'email|max:255|unique:employees',
+            'email' => 'email|max:255|unique:employees',
             'hire_date' => 'required',
             'work_location' => 'required',
             'wages' => 'required',
@@ -77,7 +80,11 @@ class employeesController extends Controller
                         ->withInput();
 
         }
+        $initial_value = 0.0;
+       // return $request->vacation_balance;
         //return $emails;
+       $now = Carbon::now();
+        
         Employee::create([
            'first_name' => $request->first_name,
            'last_name' => $request->last_name,
@@ -93,10 +100,15 @@ class employeesController extends Controller
            'wages' => $request->wages,
            'wages_amount' => (isset($request->wages_amount)) ? $request->wages_amount : $wages_amount,
            'vacation' => $request->vacation,
+           'effective_date' => (isset($request->effective_date)) ? $request->effective_date : $now->toDateString(),
+           'vacation_balance' => (isset($request->vacation_balance)) ? $request->input('vacation_balance') : $initial_value,
+           'vacation_type' => (isset($request->vacation_type)) ? $request->vacation_type : "N/A",
+           'vacation_rate' => (isset($request->vacation_rate)) ? $request->vacation_rate : $initial_value,
+           'vacation_date' => (isset($request->effective_date)) ? $request->effective_date : $now->toDateString(),
              ]);
 
-          
-        return redirect('/employees');
+        return back();
+       //return redirect('/employees/');
     }
 
     /**
@@ -108,7 +120,6 @@ class employeesController extends Controller
     public function show($id)
     {
         $employees = Employee::findOrFail($id);
-
        return view('employees.show', compact('employees'));
     }
 
@@ -151,18 +162,17 @@ class employeesController extends Controller
        return back();
     }
 
+    public function vacation($id){
+        $employee = Employee::findOrFail($id);
+        return view('employees.vacation', compact('employee'));
+    }
     public function salary($id)
-    {
-        $click = Employee::findOrFail($id); 
-        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
-        return view('employees.salary', compact(['employees', 'click'])); 
+    { 
+        $employee = Employee::findOrFail($id);
+        return view('employees.salary', compact('employee')); 
     }
 
-    public function vacation($id){
-        $click = Employee::findOrFail($id); 
-        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
-        return view('employees.vacation', compact(['employees', 'click']));
-    }
+    
 
     public function leave($id){
         $click = Employee::findOrFail($id); 
@@ -171,9 +181,8 @@ class employeesController extends Controller
     }
 
     public function benefits($id){
-        $click = Employee::findOrFail($id); 
-        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
-        return view('employees.benefits', compact(['employees', 'click']));
+        $employee = Employee::findOrFail($id); 
+        return view('employees.benefits', compact('employee'));
     }
 
     public function files($id){
@@ -193,6 +202,11 @@ class employeesController extends Controller
         return view('employees.deposits', compact(['employees', 'click']));
     }
 
+    public function tax($id){
+        $click = Employee::findOrFail($id); 
+        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        return view('employees.tax', compact(['employees', 'click']));
+    }
 
 
 

@@ -188,35 +188,19 @@
                           <label >Work Wages <span style="color: red"> * </span></label>
 				   	  		 <select class="form-control" name="wages" form="selectMenu">
 				   	  		    <option value=" " disabled selected>Wages</option>
-							    <option>Per hour</option>
-							    <option>Weekly</option>
-							    <option>Monthly</option>
-							    <option>Anually</option>
+							    <option>Hour</option>
+							    <option>Week</option>
+							    <option>Month</option>
+							    <option>Anual</option>
 							 </select><br>
 				   	  	  </div>
-				   	  	  <div class="col-md-12 noformpacing ">
-	                        <label >Wages Amount <span style="color: red"> * </span></label>
-	                        </div>
-						  <div class="col-md-12 noformpacing ">
-
-	                         <div class="col-md-2 noformpacing ">
-				   	  		     <select class="form-control" name="wages" form="selectMenu">
-								    <option value=" " disabled selected>Currency</option>
-								    <option>USD</option>
-								    <option>JMD</option>
-								    <option>PND</option>
-								    <option>Anually</option>
-								 </select><br>
-					   	  	  </div>
-	                          
-                             <div class="col-md-10 noformpacing {{ $errors->has('wages_amount') ? 'has-error' : '' }}">
+                          <div class="col-md-12 noformpacing {{ $errors->has('wages_amount') ? 'has-error' : '' }}">
+                              <label >Wages Amount <span style="color: red"> * </span></label>
 			   	  		     <input type="field" name="wages_amount" class="form-control" placeholder="Wages" />
-			   	  		     </div>
                           </div>
                           <div class="col-md-12 noformpacing {{ $errors->has('vacation') ? 'has-error' : '' }}">
 	                        <label >Vacation Policy </label>
 			   	  		     <select class="form-control" name="vacation" form="selectMenu">
-			   	  		            <option value=" " disabled selected>Select Option</option>
 								    <option>Yes</option>
 								    <option>No</option>
 								 </select><br>
