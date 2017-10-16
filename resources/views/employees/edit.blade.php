@@ -21,15 +21,15 @@
 	        <table class="table table-striped col-md-10 responsive" >
 	            <thead >
 	              <tr>
-	              <td><b><a href="/employees/{{ $employees->id }}/edit"><h4>personal Information</h4></a></b></td>
-	                <td><b><a href="/employees/salary/{{ $employees->id }}"><h4>Salary</h4></a></b></td>
-	                <td><b><a href="/employees/vacation/{{ $employees->id }}"><h4>Vacation</h4></a></b></td>
-	                <td><b><a href="/employees/leave/{{ $employees->id }}"><h4>Leave</h4></a></b></td>
-	                <td><b><a href="/employees/tax/{{ $employees->id }}"><h4>Tax Details</h4></a></b></td>
-	                <td><b><a href="/employees/benefits/{{ $employees->id }}"><h4>Benefits</h4></a></b></td>
-	                <td><b><a href="/employees/files/{{ $employees->id }}"><h4>Employee Files</h4></a></b></td>
-	                <td><b><a href="/employees/deposits/{{ $employees->id }}"><h4>Direct Deposit</h4></a></b></td>
-	                <td><b><a href="/employees/status/{{ $employees->id }}"><h4>Status</h4></a></b></td>
+	              <td><b><a href="{{route('employees.index')}}"><h4>personal Information</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/salary/{{ $employees->id }}"><h4>Salary</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/vacation/{{ $employees->id }}"><h4>Vacation</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/leave/{{ $employees->id }}"><h4>Leave</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/tax/{{ $employees->id }}"><h4>Tax Details</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/benefits/{{ $employees->id }}"><h4>Benefits</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/files/{{ $employees->id }}"><h4>Employee Files</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/deposits/{{ $employees->id }}"><h4>Direct Deposit</h4></a></b></td>
+	                <td><b><a href="{{route('employees.index')}}/status/{{ $employees->id }}"><h4>Status</h4></a></b></td>
 	              </tr>
 	            </thead>
 	          </table>
@@ -43,7 +43,7 @@
   </div>
   <div class="row">
        <div class="col-md-10 col-md-offset-1" >
-   	  	   <form action="/employees/{{ $employees->id }}" id="selectMenu" method="POST" data-parsley-validate=""'>
+   	  	   <form action="/employees/{{ $employees->id }}" id="editSelectMenu" method="POST" data-parsley-validate=""'>
    	  		   <div class="panel panel-primary" >
                  <div class="panel-heading">Personal Information</div>
    	  		
@@ -71,7 +71,7 @@
 				   	  		<input type="text" name="address_town" class="form-control" value="{{ $employees->address_town }}" />
 						  </div>
 						  <div class="col-md-3 noformpacing">
-				   	  		 <select class="form-control" name="address_parish" form="selectMenu" value="{{ $employees->address_parish }}">
+				   	  		 <select class="form-control" name="address_parish" form="editSelectMenu" value="{{ $employees->address_parish }}">
 							    <option>Kingston</option>
 							    <option>Montego Bay</option>
 							    <option>Manchester</option>
@@ -79,7 +79,7 @@
 							 </select><br>
 				   	  	  </div>
 				   	  	  <div class="col-md-2 noformpacing">
-				   	  		 <select class="form-control" name="address_country" form="selectMenu" value="{{ $employees->address_country }}">
+				   	  		 <select class="form-control" name="address_country" form="editSelectMenu" value="{{ $employees->address_country }}">
 							    <option>JA</option>
 							    <option>USA</option>
 							    <option>Cuba</option>
@@ -91,7 +91,7 @@
                           </div>
                           <div class="col-md-12 noformpacing">
 	                          <div class="col-md-6 noformpacing">
-					   	  		 <select class="form-control" name="month" form="selectMenu" value="{{ var_dump($employees->day) }}">
+					   	  		 <select class="form-control" name="month" form="editSelectMenu" value="{{ var_dump($employees->day) }}">
 								    <option>January</option>
 								    <option>February</option>
 								    <option>March</option>
@@ -107,7 +107,7 @@
 								 </select>
 					   	  	  </div>
 					   	  	  <div class="col-md-3 noformpacing">
-					   	  		 <select class="form-control" name="day" form="selectMenu" value="{{ var_dump($employees->day) }}">
+					   	  		 <select class="form-control" name="day" form="editSelectMenu" value="{{ var_dump($employees->day) }}">
 								    <option>1</option>
 								    <option>2</option>
 								    <option>3</option>
@@ -142,7 +142,7 @@
 								 </select>
 					   	  	  </div>
 					   	  	  <div class="col-md-3 noformpacing">
-					   	  		 <select class="form-control" name="year" form="selectMenu" value="{{ var_dump($employees->day) }}">
+					   	  		 <select class="form-control" name="year" form="editSelectMenu" value="{{ var_dump($employees->day) }}">
 								    <option>2017</option>
 								    <option>2016</option>
 								    <option>2015</option>
@@ -204,34 +204,38 @@
 
                            <div class="col-md-12 noformpacing">
                             <label >Work Location <span style="color: red"> * </span></label>
-				   	  		 <select class="form-control" name="work_location" value="{{ $employees->work_location }}">
+				   	  		 <select class="form-control" name="work_location" form="editSelectMenu" value="{{ $employees->work_location }}">
 							    <option>Employees working from business location</option>
 							    <option>Employees working from home</option>
 							 </select><br>
 				   	  	  </div>
                           <div class="col-md-12 noformpacing">
+                          <div class="col-md-12 noformpacing {{ $errors->has('wages') ? 'has-error' : '' }}">
                           <label >Work Wages <span style="color: red"> * </span></label>
-				   	  		 <select class="form-control" name="wages" form="selectMenu" value="{{ $employees->wages }}">
+				   	  		 <select class="form-control" name="wages" form="editSelectMenu" value="{{ $employees->wages }} ">
 							    <option>Hour</option>
 							    <option>Week</option>
 							    <option>Month</option>
-							    <option>Anually</option>
+							    <option>Anual</option>
 							 </select><br>
 				   	  	  </div>
-						  <div class="col-md-12 noformpacing">
-	                        <label >Wages Amount <span style="color: red"> * </span></label>
-			   	  		     <input type="dollar" name="wages_amount" class="form-control" value="{{ $employees->wages_amount }}" />
+                          <div class="col-md-12 noformpacing {{ $errors->has('wages_amount') ? 'has-error' : '' }}">
+                              <label >Wages Amount <span style="color: red"> * </span></label>
+			   	  		     <input type="field" name="wages_amount" class="form-control" value="{{ $employees->wages_amount }}" />
                           </div>
-                          <div class="col-md-12 noformpacing">
-	                        <label >Vacation Policy</label>
-			   	  		     <input type="dollar" name="vacation" class="form-control" value="{{ $employees->vacation }}" />
+                          <div class="col-md-12 noformpacing {{ $errors->has('vacation') ? 'has-error' : '' }}">
+	                        <label >Vacation Policy </label>
+			   	  		     <select class="form-control" name="vacation" form="editSelectMenu" value="{{ $employees->vacation }}">
+								    <option>Yes</option>
+								    <option>No</option>
+								 </select><br>
                           </div>
 						    
                        </div>
                   </div>
                  </div>
                </div>
-                
+
 		   	  		<button type="submit" class="btn btn-success pull-right">Save and Continue</button><br>
    	  	   </form><br>
 

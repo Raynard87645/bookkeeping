@@ -20,8 +20,9 @@
     	              <td><b>Total</b></td>
     	            </tr>
     	          </thead>
+    	           
 			    @foreach($employees as $employee)
-			     
+			       <tbody class="detail" id="myid">
     	            <tr>
 	    	              <td>{{$employee->last_name}}, {{$employee->first_name}}</td>
                           
@@ -29,27 +30,27 @@
 				               {{csrf_field()}}
 						   	  	  <div class="form-group " >
 						   	  	       <td class="count-me col-md-1" >
-							   	  		     <input type="none" id="regular" class="form-control" value="10" />
+							   	  		     <input type="field" id="regular" class="form-control" value=" " onkeyup ="myFunction()"/>
 							   	  		 </td>    
 							   	  		<td class="count-me col-md-1" >  
-							   	  		     <input type="none" id="overtime" class="form-control" placeholder="0.0" />
+							   	  		     <input type="field" id="overtime" class="form-control" placeholder="0.0" onkeyup ="myFunction()"/>
 							   	  		</td>
 							   	  		<td class="count-me col-md-1">   
-							   	  		     <input type="none" id="vacation" class="form-control" placeholder="0.0" />
+							   	  		     <input type="field" id="vacation" class="form-control" placeholder="0.0" onkeyup ="myFunction()"/>
 							   	  		</td>
 							   	  		<td class="count-me col-md-1"> 
-							   	  		     <input type="none" id="sick_time" class="form-control" placeholder="0.0" /> 
+							   	  		     <input type="field" id="sick_time" class="form-control" placeholder="0.0" onkeyup ="myFunction()"/> 
 							   	  		</td>
 							   	  		<td class="col-md-1" >
-							   	  		   <div onmouseleave="mouseLeave()"> 
-							   	  		    <p><span id="total" value="total">Mouse over me!</span></p>
-							   	  		    </div>
+							   	  		    <input class="form-control" type="" name="" id="total" value="" disabled="disabled">
 							   	  		</td>
 							   	  </div>
 					        </form>
 
     	            </tr>
+    	            </tbody>
     	        @endforeach
+    	           
     	         </table>
 	    	    @endif 
 	    	</div> 
@@ -63,64 +64,52 @@
 		</div>
 	</div>
 
-    <script type="text/javascript">
-    	/*function mouseEnter() {
-          if(regular || overtime || vacation || sick_time){ mouseleave();}
-		  }*/
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script>
+   	  $(function(){
+        $('#add').click(function(){
+            
+        });
+	   $(document).on("click", ".remove", function() {
+          $(this).parent().parent().remove(); 
+		});
+	   $(document).on("keyup", "#regular, #overtime", function() {
+          /*var n = ($('.detail').length-0)+1;
+          var regular =0; var overtime =0; var vacation =0; var sick_time =0;
+   	     	regular = document.getElementById('regular').value;
+          overtime = document.getElementById('overtime').value;
+		   vacation = document.getElementById('vacation').value;
+          sick_time = document.getElementById('sick_time').value;
+           var total = +sick_time + +vacation + +overtime + +regular;
+           document.getElementById('total').value=total;*/
 
-		function mouseLeave() {
-		     regular = parseFloat(document.getElementById('regular').value);
-	     	 overtime = parseFloat(document.getElementById('overtime').value);
-	     	 vacation = parseFloat(document.getElementById('vacation').value);
-	         sick_time = parseFloat(document.getElementById('sick_time').value);
-	     	
-	     	
-	     	document.getElementById('total').innerHTML = regular + overtime + vacation + sick_time;
-	     	alert(total);
-		  }
-      </script>
-     
-    <!--  <script>
-        function mouseOutFunc(){	
-	     	//
-	        regular = parseFloat(document.getElementById('regular').value);
-	     	 overtime = parseFloat(document.getElementById('overtime').value);
-	     	 vacation = parseFloat(document.getElementById('vacation').value);
-	      sick_time = parseFloat(document.getElementById('sick_time').value);
-	     	
-	     	
-	     	document.getElementById('total').innerHTML = regular + overtime + vacation + sick_time;
-	     	alert(regular);
-	     	
-	    }
+           var tr = $(this).parent().parent();
 
-	     $(document).ready(function(){
-		    $("div.regular").mouseleave(function(){
-		        mouseOutFunc();
-		    });
-		});
-	     $(document).ready(function(){
-		    $("div.overtime").mouseleave(function(){
-		        mouseOutFunc();
-		    });
-		});
-	     $(document).ready(function(){
-		    $("div.vacation").mouseleave(function(){
-		        mouseOutFunc();
-		    });
-		});
-	     $(document).ready(function(){
-		    $("div.sick_time").mouseleave(function(){
-		        mouseOutFunc();
-		    });
-		});
-	     $(document).ready(function(){
-		    $("div.total").mouseleave(function(){
-		        mouseOutFunc();
-		    });
-		});
+           var regular= tr.find('input[name="regular"]').val();
+           var overtime = tr.find('input[name="overtime"]').val();
+           var total = regular * overtime;
+          tr.find('input[name="total"]').val(total);
+          
 
-	    
-	</script> -->
+		});
+   	 });
+   	  function myFunction(){
+   	  	
+
+           
+   	  	   
+   	  }
+   	  function addNewRow(){
+         var n = ($('.detail tr').length-0)+1;
+          var tr = '<tr>' +
+              '<td class="count-me col-md-1" ><input type="none" id="regular" class="form-control" value="10" /></td>'+    
+			'<td class="count-me col-md-1" ><input type="none" id="overtime" class="form-control" placeholder="0.0" /></td>'+
+			'<td class="count-me col-md-1"><input type="none" id="vacation" class="form-control" placeholder="0.0" /></td>'+
+			'<td class="count-me col-md-1"><input type="none" id="sick_time" class="form-control" placeholder="0.0" /></td>'+
+			'<td class="col-md-1" ><input class="form-control" type="" name="" id="total" value="" disabled="disabled"></td>'+
+            '</tr>';
+         $('.detail').append(tr);
+   	  }
+   </script>
  
 @endsection

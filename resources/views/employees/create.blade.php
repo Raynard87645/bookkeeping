@@ -16,7 +16,7 @@
             @endforeach
          @endif
          
-   	  	   <form action="/employees" id="selectMenu" method="POST" >
+   	  	   <form action="/employees" id="selectMenu" method="POST" data-parsley-validate ="">
    	  		   <div class="panel panel-primary responsive" >
                  <div class="panel-heading">Personal Information</div>
    	  		
@@ -26,20 +26,20 @@
 		   	  	  <div class="form-group">
 		   	  		      <label >Name <span style="color: red"> * </span></label> 
 		   	  		      <div class="col-md-12 noformpacing {{ $errors->has('first_name') ? 'has-error' : '' }}">
-			   	  		     <input type="text" name="first_name" class="form-control" placeholder="First Name" /><br>
+			   	  		     <input type="text" name="first_name" class="form-control" placeholder="First Name" required=""/><br>
 			   	  		  </div>
 			   	  		  <div class="col-md-12 noformpacing {{ $errors->has('last_name') ? 'has-error' : '' }}">
-			   	  		     <input type="text" name="last_name" class="form-control" placeholder="Last Name" /><br>
+			   	  		     <input type="text" name="last_name" class="form-control" placeholder="Last Name" required=""/><br>
 			   	  		  </div>
 	                      <div class="col-md-12 noformpacing {{ $errors->has('address_street') ? 'has-error' : '' }}">
 	                         <label >Address <span style="color: red"> * </span></label>
-			   	  		     <input type="text" name="address_street" class="form-control" placeholder="Street" />
+			   	  		     <input type="text" name="address_street" class="form-control" placeholder="Street" required=""/>
                           </div>
 			   	  		  <div class="col-md-7 noformpacing {{ $errors->has('address_town') ? 'has-error' : '' }}">
-				   	  		<input type="text" name="address_town" class="form-control" placeholder="City/Town" />
+				   	  		<input type="text" name="address_town" class="form-control" placeholder="City/Town" required=""/>
 						  </div>
 						  <div class="col-md-3 noformpacing {{ $errors->has('address_parish') ? 'has-error' : '' }}">
-				   	  		 <select class="form-control" name="address_parish" form="selectMenu" >
+				   	  		 <select class="form-control" name="address_parish" form="selectMenu" required="">
 				   	  		    <option value=" " disabled selected>Parish</option>
 							    <option>Kingston</option>
 							    <option>Montego Bay</option>
@@ -48,7 +48,7 @@
 							 </select><br>
 				   	  	  </div>
 				   	  	  <div class="col-md-2 noformpacing {{ $errors->has('address_country') ? 'has-error' : '' }}">
-				   	  		 <select class="form-control" name="address_country" form="selectMenu">
+				   	  		 <select class="form-control" name="address_country" form="selectMenu" required="">
 							    <option value=" " disabled selected>Country</option>
 							    <option>JA</option>
 							    <option>USA</option>
@@ -61,7 +61,7 @@
                           </div>
                           <div class="col-md-12 noformpacing">
 	                          <div class="col-md-6 noformpacing {{ $errors->has('month') ? 'has-error' : '' }}">
-					   	  		 <select class="form-control" name="month" form="selectMenu">
+					   	  		 <select class="form-control" name="month" form="selectMenu" required="">
 								    <option value=" " disabled selected>Month</option>
 								    <option value="1">January</option>
 								    <option value="2">February</option>
@@ -79,7 +79,7 @@
 								 </select>
 					   	  	  </div>
 					   	  	  <div class="col-md-3 noformpacing {{ $errors->has('day') ? 'has-error' : '' }}">
-					   	  		 <select class="form-control" name="day" form="selectMenu">
+					   	  		 <select class="form-control" name="day" form="selectMenu" required="">
 								    <option value=" " disabled selected>Day</option>
 								    <option>1</option>
 								    <option>2</option>
@@ -115,7 +115,7 @@
 								 </select>
 					   	  	  </div>
 					   	  	  <div class="col-md-3 noformpacing {{ $errors->has('year') ? 'has-error' : '' }}">
-					   	  		 <select class="form-control" name="year" form="selectMenu">
+					   	  		 <select class="form-control" name="year" form="selectMenu" required="">
 								    <option value=" " disabled selected>Year</option>
 								    <option>2017</option>
 								    <option>2016</option>
@@ -152,7 +152,7 @@
 					   	  	  </div>
 	                          <div class="col-md-12 noformpacing {{ $errors->has('email') ? 'has-error' : '' }}">
 	                           <label >Email </label>
-	                           <input type="email" name="email" class="form-control" placeholder="Email"/><br>
+	                           <input type="email" name="email" class="form-control" placeholder="Email" required="false"/><br>
 	                          </div>
 	                          <div class="col-md-12 noformpacing {{ $errors->has('ssn') ? 'has-error' : '' }}">
 	                           <label >Social Security Number</label>
@@ -173,12 +173,12 @@
 		   	  		  <div class="form-group">
 		   	  		       <label class="col-md-12 noformpacing ">Date of Hire <span style="color: red"> * </span></label> 
 		   	  		        <div class="col-md-6 noformpacing {{ $errors->has('hire_date') ? 'has-error' : '' }}">
-			   	  		      <input type="date" name="hire_date" class="form-control"  /><br>
+			   	  		      <input type="date" name="hire_date" class="form-control"  required=""/><br>
 			   	  		    </div>
 
                            <div class="col-md-12 noformpacing {{ $errors->has('work_location') ? 'has-error' : '' }}">
                             <label >Work Location <span style="color: red"> * </span></label>
-				   	  		 <select class="form-control" name="work_location" placeholder="Parish">
+				   	  		 <select class="form-control" name="work_location" placeholder="Parish" required="">
 				   	  		    <option value=" " disabled selected>Work Location</option>
 							    <option>Employees working from business location</option>
 							    <option>Employees working from home</option>
@@ -186,7 +186,7 @@
 				   	  	  </div>
                           <div class="col-md-12 noformpacing {{ $errors->has('wages') ? 'has-error' : '' }}">
                           <label >Work Wages <span style="color: red"> * </span></label>
-				   	  		 <select class="form-control" name="wages" form="selectMenu">
+				   	  		 <select class="form-control" name="wages" form="selectMenu" required="">
 				   	  		    <option value=" " disabled selected>Wages</option>
 							    <option>Hour</option>
 							    <option>Week</option>
@@ -196,11 +196,11 @@
 				   	  	  </div>
                           <div class="col-md-12 noformpacing {{ $errors->has('wages_amount') ? 'has-error' : '' }}">
                               <label >Wages Amount <span style="color: red"> * </span></label>
-			   	  		     <input type="field" name="wages_amount" class="form-control" placeholder="Wages" />
+			   	  		     <input type="field" name="wages_amount" class="form-control" placeholder="Wages" required=""/>
                           </div>
                           <div class="col-md-12 noformpacing {{ $errors->has('vacation') ? 'has-error' : '' }}">
 	                        <label >Vacation Policy </label>
-			   	  		     <select class="form-control" name="vacation" form="selectMenu">
+			   	  		     <select class="form-control" name="vacation" form="selectMenu" required="false">
 								    <option>Yes</option>
 								    <option>No</option>
 								 </select><br>

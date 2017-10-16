@@ -107,8 +107,7 @@ class employeesController extends Controller
            'vacation_date' => (isset($request->effective_date)) ? $request->effective_date : $now->toDateString(),
              ]);
 
-        return back();
-       //return redirect('/employees/');
+        return redirect('/employees');
     }
 
     /**
@@ -146,6 +145,8 @@ class employeesController extends Controller
     {
         $employees = Employee::findOrFail($id);
         $employees->update($request->all());
+
+        return back();
     }
 
     /**
@@ -170,9 +171,7 @@ class employeesController extends Controller
     { 
         $employee = Employee::findOrFail($id);
         return view('employees.salary', compact('employee')); 
-    }
-
-    
+    }    
 
     public function leave($id){
         $click = Employee::findOrFail($id); 
@@ -203,11 +202,13 @@ class employeesController extends Controller
     }
 
     public function tax($id){
-        $click = Employee::findOrFail($id); 
-        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
-        return view('employees.tax', compact(['employees', 'click']));
+        $employees = Employee::findOrFail($id);
+        return view('employees.tax', compact('employees'));
     }
-
+     public function timesheet($id){
+        $employees = Employee::findOrFail($id);
+        return view('employees.timesheet', compact('employees'));
+    }
 
 
 }

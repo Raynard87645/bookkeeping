@@ -7,6 +7,7 @@ use App\Sales;
 use App\Items;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Dashboard;
 use App\User;
 use Auth;
 use DB;
@@ -92,4 +93,20 @@ class dashboardController extends Controller
     {
         //
     }
+    public function invoice($id){
+        $invoice = User::findOrFail($id);
+        return view('dashboard.invoice', compact('invoice'));
+    }
+    public function finances($id){
+        $finances = User::findOrFail($id);
+        return view('dashboard.finances', compact('finances'));
+
+    }
+    public function receipts($id){
+        $receipts = User::findOrFail($id);
+        return view('dashboard.receipts', compact('receipts'));
+    }
+
+
+
 }

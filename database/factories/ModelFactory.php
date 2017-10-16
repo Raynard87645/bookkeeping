@@ -53,6 +53,41 @@ $factory->define(App\Sales::class, function (Faker\Generator $faker) {
        // 'sale_date' => Carbon\Carbon::parse('1 week'),
     ];
 });
+$factory->define(App\ProductInvoice::class, function (Faker\Generator $faker) {
+    static $password;
+
+    $price = $faker->numberBetween(100,1000);
+            $quantity = $faker->numberBetween(100,1000);
+     $invoice_number = App\Invoice::all()->random()->invoice_number;
+    return [
+                    
+                   'invoice_id' => $invoice_number,
+                   'name' => $faker->sentence,
+                   'quantity' => $quantity,
+                   'price' => $price,
+                   'product_total' => ($quantity * $price)
+    ];
+   
+});
+$factory->define(App\Invoice::class, function (Faker\Generator $faker) {
+    static $password;
+           $price = $faker->numberBetween(100,1000);
+            $quantity = $faker->numberBetween(100,1000);
+          $subTotal = ($quantity * $price);
+          $discount = $faker->numberBetween(10,20);
+          $grandTotal = $subTotal - $discount;
+    return [
+              'invoice_number' =>$faker->numberBetween(10000,40000),
+              'client' => $faker->name,
+              'client_address' => $faker->address,
+              'title' => $faker->sentence,
+              'invoice_date' => $faker->date,
+              'due_date' => $faker->date,
+              'sub_total' => $subTotal,
+              'discount' => $discount,
+              'grand_total' => $grandTotal
+    ];
+});
 /*$factory->define(App\Employee::class, function (Faker\Generator $faker) {
     static $password;
     

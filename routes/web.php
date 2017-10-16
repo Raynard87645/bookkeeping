@@ -40,6 +40,19 @@ Route::resource('articles', 'articlesController');
 Route::get('/articles/myblogs/{username}', 'articlesController@myblogs');
 
 Route::resource('dashboard', 'dashboardController');
+Route::get('dashboard/invoice/{id}', 'dashboardController@invoice');
+Route::get('dashboard/finances/{id}', 'dashboardController@finances');
+Route::get('dashboard/receipts/{id}', 'dashboardController@receipts');
+
+Route::get('templates', 'pdfFormsController@index');
+
+Route::resource('invoices', 'invoiceController');
+Route::get('invoices/invoice/{id}', 'invoiceController@invoice');
+Route::get('invoices/finances/{id}', 'invoiceController@finances');
+Route::get('invoices/receipts/{id}', 'invoiceController@receipts');
+Route::get('invoices/invoiceform/{id}', 'invoiceController@invoiceform');
+Route::get('invoices/testform/{id}', 'invoiceController@testform');
+
 Route::resource('items', 'itemsController');
 Route::get('items', 'itemsController@index')->middleware('auth');
 Route::post('items/import', 'itemsController@import')->middleware('auth');
@@ -62,6 +75,7 @@ Route::get('employees/benefits/{id}', 'employeesController@benefits');
 Route::get('employees/files/{id}', 'employeesController@files');
 Route::get('employees/deposits/{id}', 'employeesController@deposits');
 Route::get('employees/status/{id}', 'employeesController@status');
+Route::get('employees/timesheet/{id}', 'employeesController@timesheet');
 
 Route::resource('taxes', 'taxesController');
 Route::resource('taxform', 'taxformController');
